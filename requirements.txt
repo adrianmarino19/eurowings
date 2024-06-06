@@ -6,4 +6,6 @@ scipy==1.13.0
 matplotlib==3.5.3
 matplotlib-inline==0.1.6
 ipykernel==6.15.3
+fastapi
+uvicorn
 sklearn-pandas==2.2.0

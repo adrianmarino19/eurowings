@@ -1,0 +1,19 @@
+GCP_PROJECT_ID="teak-sun-420410"
+DOCKER_IMAGE_NAME="takeoff-image"
+GCP_REGION="europe-west1"
+DOCKER_REPO_NAME="takeoff-repo"
+
+
+
+gcloud artifacts repositories create $DOCKER_REPO_NAME --repository-format=docker --location=$GCP_REGION --description="My first repository for storing Docker images in GAR"
+
+docker build --platform linux/amd64 -t $GCP_REGION-docker.pkg.dev/$GCP_PROJECT_ID/$DOCKER_REPO_NAME/$DOCKER_IMAGE_NAME:0.1 .
+docker build -t $GCP_REGION-docker.pkg.dev/$GCP_PROJECT_ID/$DOCKER_REPO_NAME/$DOCKER_IMAGE_NAME:0.1 .
+
+
+
+docker run -e PORT=8000 -p 8080:8000 $GCP_REGION-docker.pkg.dev/$GCP_PROJECT_ID/$DOCKER_REPO_NAME/$DOCKER_IMAGE_NAME:0.1
+
+docker push $GCP_REGION-docker.pkg.dev/$GCP_PROJECT_ID/$DOCKER_REPO_NAME/$DOCKER_IMAGE_NAME:0.1
+
+gcloud run deploy --image $GCP_REGION-docker.pkg.dev/$GCP_PROJECT_ID/$DOCKER_REPO_NAME/$DOCKER_IMAGE_NAME:0.1 --region $GCP_REGION
