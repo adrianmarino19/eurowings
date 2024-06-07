@@ -24,12 +24,12 @@ def predict(OriAirp_input, DestAirp_input, CabClass_input, MainCarr_input):
     data[1] = DestAirp_input
     data[4] = MainCarr_input
     data[9] = CabClass_input
-
+    print(data)
     #convert the origin aiport to countycode so can be used for origin country
-    data[2] = airport_to_countrycode(OriAirp_input)
+    #data[2] = airport_to_countrycode(OriAirp_input)
 
     #convert the destination airport to coutrycode so can be used for dest country
-    data[3] = airport_to_countrycode(DestAirp_input)
+    #data[3] = airport_to_countrycode(DestAirp_input)
 
     [price] = predict_api(data)
     return {'price': price}

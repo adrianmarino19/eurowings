@@ -41,7 +41,7 @@ with col4:
     )
 
 # Button
-st.button("Let him cook!")
+bt = st.button("Let him cook!")
 
 st.write("---")
 
@@ -69,19 +69,22 @@ html_content = f"""
 st.markdown(html_content, unsafe_allow_html=True)
 
 
+if text_input_4 and text_input_1 and text_input_2 and text_input_3 and bt:
 
-base_url = "http://localhost:8000/"
-endpoint = "predict"
+    base_url = "https://takeoff-image-jy4h6ma67q-ew.a.run.app/"
+    endpoint = "predict"
 
-params = {
-    "OriAirp_input": text_input_1,
-    "DestAirp_input": text_input_2,
-    "CabClass_input": text_input_3,
-    "MainCarr_input": text_input_4
-}
+    params = {
+        "OriAirp_input": text_input_1,
+        "DestAirp_input": text_input_2,
+        "CabClass_input": text_input_3,
+        "MainCarr_input": text_input_4
+    }
 
-# Make the GET request
-response = requests.get(f"{base_url}{endpoint}", params=params)
+    # Make the GET request
+    response = requests.get(f"{base_url}{endpoint}", params=params)
 
-# Print the response
-print(response.text)
+    if response.status_code == 200:
+
+        # Print the response
+        st.write(response.json()["price"])
