@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 def separate_columns(df):
     categorical_columns = df.dtypes[(df.dtypes == "object")].index
     categorical_columns = categorical_columns.drop(["cabinClass", "kind"])
@@ -23,7 +24,6 @@ def separate_columns(df):
 def OHE_filtering(df, col):
     """ This function renames unpopular destinations to Other such that less columns will be generated during
     the one hot encoding"""
-
     """BE CAREFUL!!! Only run once as otherwise the destinations will be split into smaller and smaller chunks"""
     avg_of_val = (df[col].value_counts().mean())
 
@@ -88,3 +88,9 @@ def cleaning(data):
     data = pd.DataFrame([data], columns=test_cols)
 
     return data
+
+def airport_to_countrycode(airport):
+    file = "data/airport_coordinates.csv"
+    airport_df = pd.read_csv(file, delimiter=";")
+    conversion_dict = airport_df.set_index('Airport Code')['Country Code'].to_dict()
+    return conversion_dict[airport]

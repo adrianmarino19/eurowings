@@ -2,7 +2,7 @@ import pickle
 from takeoff.utils import cleaning
 import pandas as pd
 
-model_filename = "takeoff/pipeline1.pkl"
+model_filename = "takeoff/pipeline2.pkl"
 model = pickle.load(open(model_filename,"rb"))
 accepted_dest_airport = 1
 # Do a list of all the OHT filtering to hard code every single airport
