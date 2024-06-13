@@ -1,4 +1,47 @@
 import pandas as pd
+from math import radians, sin, cos, sqrt, atan2
+from datetime import datetime
+
+gdp_per_capita_eur_dict = {
+    'ES': 37316.7, 'GB': 41833.8, 'RO': 12710.7, 'FR': 43853.4, 'DE': 47938.5,
+    'OM': 14340.6, 'IT': 36311.4, 'IL': 38530.8, 'AT': 47834.1, 'GR': 18680.4, 'NO': 67981.5,
+    'AU': 51021, 'PT': 22955.4, 'NL': 57180.6, 'TR': 8624.7, 'CZ': 21448.8,
+    'BG': 8805.6, 'PL': 15628.5, 'BE': 50067, 'SK': 18413.1, 'BR': 6618.6, 'CY': 28025.1,
+    'KZ': 9670.5, 'IN': 2291.4, 'DK': 61821.9, 'SE': 54426.6, 'LU': 109163.7, 'KR': 31353.3,
+    'KW': 28124.1, 'CH': 79108.2, 'LB': 4510.7, 'IE': 93051, 'EE': 21527.1, 'TN': 3393.9,
+    'SA': 21005.1, 'CA': 46984.5, 'CN': 11544.3, 'JP': 38382.3, 'FI': 46281.6, 'AE': 39402,
+    'AL': 5841.9, 'UA': 3187.8, 'MA': 3087, 'RU': 10373.4, 'HU': 17092.8, 'RS': 8669.7,
+    'GE': 4879.8, 'HR': 15659.1, 'XK': 4190.4, 'SI': 25478.1, 'IQ': 4168.8, 'AR': 8118.9,
+    'NZ': 41063.4, 'DZ': 3327.3, 'BY': 5855.4, 'LV': 19066.5, 'TW': 31140.9, 'JO': 3834,
+    'ID': 3870, 'EG': 3231.9, 'ME': 7632, 'AF': 464.4, 'MX': 9477, 'BO': 3213,
+    'NG': 1844.1, 'US': 63032.4, 'PH': 3195.9, 'LT': 21366.9, 'PK': 1309.5,
+    'UZ': 1758.6, 'SG': 63666.9, 'CO': 6180.3, 'UY': 15967.8, 'MC': 155700, 'MT': 29303.1,
+    'AM': 4219.2, 'IS': 69146.1, 'BA': 6165, 'BH': 22943.7, 'TH': 7074,
+    'MY': 10073.7, 'AD': 44900.4, 'VN': 3766.5, 'CR': 11781, 'AZ': 4782.6, 'LI': 162204.3,
+    'IR': 2486.7, 'LY': 3606.3, 'YE': 741.6, 'MD': 4141.8, 'GH': 2201.4, 'PS': 3465.9,
+    'SC': 13797, 'JE': 51840, 'ZA': 5625.9, 'GM': 684.9, 'SY': 1141.2, 'CV': 3182.4,
+    'QA': 55208.7, 'BD': 1834.2, 'CL': 14157.9, 'PA': 11999.8, 'IM': 80055, 'MK': 6141.6,
+    'KH': 1405.8, 'PE': 6546.6, 'EC': 5617.8, 'GT': 4835.7, 'SN': 1489.5, 'RE': 22314.6,
+    'GG': 60300, 'MU': 10635.3, 'ML': 809.1, 'GI': 83034.9, 'KG': 1112.4, 'ET': 857.7,
+    'KE': 1859.4, 'NI': 2064.6, 'KY': 76725, 'UG': 742.5, 'LK': 3467.7, 'MV': 9471.3,
+    'SO': 394.2, 'CD': 505.8, 'SL': 470.7, 'SM': 55187.1, 'LA': 2372.4, 'CG': 2143.8, 'SR': 4352.4,
+    'WS': 3930.3, 'PY': 4956.3, 'GF': 21075.3, 'DO': 7893, 'GP': 21758.4, 'MR': 1461.6, 'CI': 2475.9,
+    'BJ': 1227.6, 'CU': 8883, 'BT': 3118.5, 'PF': 16650, 'GW': 720.9, 'VE': 288.9,
+    'SV': 4023, 'ST': 1955.7, 'FK': 72000, 'HN': 2397.6, 'FJ': 5961.6,
+    'ZW': 1342.8, 'RW': 843.3, 'NC': 32220, 'BM': 96957, 'GU': 31761, 'MN': 4115.7,
+    'NP': 1209.6, 'TJ': 773.1, 'ZM': 1013.4, 'BF': 825.3, 'TZ': 1047.6, 'LC': 9219.6,
+    'SD': 1470.6, 'VC': 6655.5, 'DJ': 2761.2, 'NE': 522.9, 'GN': 850.5,
+    'GA': 7128.9, 'MM': 1404.9, 'FO': 53675.1, 'AG': 15437.7, 'MZ': 438.3,
+    'BQ': 21150, 'GL': 48600, 'AW': 23397.3, 'VA': 76500, 'MQ': 21775.8, 'BB': 16882.2,
+    'BS': 29871, 'JM': 4527.9, 'LR': 550.8, 'TT': 14395.5, 'CM': 1515.6, 'CE': 451.8,
+    'KN': 17208, 'AO': 2998.8, 'TD': 598.5, 'SX': 21330, 'PG': 2426.4,
+    'MG': 470.7, 'BW': 6738.3, 'BN': 27978.3, 'BZ': 4443.3, 'TC': 26550,
+    'CW': 20070, 'GD': 9037.8, 'TL': 1677.6, 'TG': 810, 'GQ': 8034.3, 'YT': 8444.7,
+    'PR': 29406.6, 'SS': 202.5, 'MW': 562.5, 'CK': 14809.5, 'MF': 21775.8,
+    'TM': 6252.3, 'VI': 34528.5, 'VG': 38070, 'KM': 1296, 'HT': 1342.8, 'PW': 14356.8,
+    'MS': 11070, 'AI': 18270, 'BI': 215.1, 'GY': 12591
+}
+
 
 
 def separate_columns(df):
@@ -60,33 +103,98 @@ OriginAirport	DestinationAirport	OriginCountry	DestinationCountry	mainCarrier	is
 BLQ	            LOS	                IT	            Other	            AF	        1	                0	        IT	    IT	            ECONOMY	    RETURN	31.0	            91.0	            2.0	            4.0	        4.0	    2.0
 """
 
-def cleaning(data):
-    if data[0] not in main_OriginAirport:
-        data[0] = "Other"
-    if data[1] not in main_DestinationAirport:
-        data[1] = "Other"
-    if data[2] not in main_OriginCountry:
-        data[2] = "Other"
-    if data[3] not in main_DestinationCountry:
-        data[3] = "Other"
-    if data[4] not in main_mainCarrier:
-        data[4] = "Other"
-    if data[7] not in main_Market:
-        data[7] = "Other"
-    if data[8] not in main_UserCountryCode:
-        data[8] = "Other"
+def haversine(lat1, lon1, lat2, lon2):
+    # Convert latitude and longitude from degrees to radians
+    lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
 
-    test_cols = [
-        'OriginAirport', 'DestinationAirport', 'OriginCountry', 'DestinationCountry',
-        'mainCarrier', 'isConnectingFlight', 'isEWRoute', 'Market', 'UserCountryCode',
-        'cabinClass', 'kind', 'TripLengthNights', 'TravelHorizonDays', 'RedirectsCount',
-        'Segments', 'ODPax', 'TripPax'
-    ]
+    dlon = lon2 - lon1
+    dlat = lat2 - lat1
+    a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+    c = 2 * atan2(sqrt(a), sqrt(1 - a))
+    r = 6371  # Radius of Earth in km
+    return c * r
+
+def get_dist(src, des):
+    print(src)
+    print(des)
+    df = pd.read_csv('data/airport_coordinates.csv', delimiter=';')
+    print('data loaded')
+    src_cord = df[df['Airport Code'] == src]
+    dest_cord = df[df['Airport Code'] == des]
+    src_lat = src_cord['Latitude']
+    src_lon = src_cord['Longitude']
+    print(src_lat)
+
+    des_lat = dest_cord['Latitude']
+    des_lon = dest_cord['Longitude']
+
+    return haversine(src_lat, src_lon, des_lat, des_lon)
+
+
+def get_gdp(des):
+    df = pd.read_csv('data/airport_coordinates.csv', delimiter=';')
+    dest_cord = df[df['Airport Code'] == des]
+    country_code = str(dest_cord['Country Code'].values[0])
+    print(country_code)
+    return gdp_per_capita_eur_dict[country_code]
+
+def days_between(d1, d2):
+    print(d1)
+    print(d2)
+
+    d1 = datetime.strptime(d1, "%Y-%m-%d")
+    #d1 = d1.strftime("%Y-%m-%d")
+
+    d2 = datetime.strptime(d2, "%Y-%m-%d")
+    #d2 = d2.strftime("%Y-%m-%d")
+
+    print(d1)
+    print(d2)
+    return abs((d1 - d2).days)
+
+
+def cleaning(data):
+
+    # [origin_air, dest_air, cab_class, trip_type, is_connected, trip_len, search_date, flight_date, airline]
+    print("start clean")
+    dist = get_dist(data[0], data[1])
+    print("dist done")
+    print(dist)
+    gdp = get_gdp(data[1])
+    print("gdb done")
+    horizon = days_between(data[6], data[7])
+    print("horizon")
+    print(horizon)
+    final_data = [dist, gdp, data[2], data[3], data[4], data[5], horizon, data[-1]]
+    test_cols = ["Distance",
+                "GDP_per_capita_EUR",
+                "cabinClass",
+                "kind",
+                "isConnectingFlight",
+                "TripLengthNights",
+                "TravelHorizonDays",
+                "mainCarrier"]
+
+    # [
+    #     'OriginAirport', 'DestinationAirport', 'OriginCountry', 'DestinationCountry',
+    #     'mainCarrier', 'isConnectingFlight', 'isEWRoute', 'Market', 'UserCountryCode',
+    #     'cabinClass', 'kind', 'TripLengthNights', 'TravelHorizonDays', 'RedirectsCount',
+    #     'Segments', 'ODPax', 'TripPax'
+    # ]
 
 
     # Create a DataFrame
-    data = pd.DataFrame([data], columns=test_cols)
-
+    data = pd.DataFrame([final_data], columns=test_cols)
+    print("Checking dataiscorrectfor predict")
+    for index, row in data.iterrows():
+        print(row[0])
+        print(row[1])
+        print(row[2])
+        print(row[3])
+        print(row[4])
+        print(row[5])
+        print(row[6])
+        print(row[7])
     return data
 
 def airport_to_countrycode(airport):
@@ -94,3 +202,9 @@ def airport_to_countrycode(airport):
     airport_df = pd.read_csv(file, delimiter=";")
     conversion_dict = airport_df.set_index('Airport Code')['Country Code'].to_dict()
     return conversion_dict[airport]
+
+def distance(origin, destination):
+    return origin - destination
+
+def time_horizon(price_date, flight_date):
+    return price_date - flight_date
