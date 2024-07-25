@@ -4,7 +4,7 @@
 
 # Takeoff: Flight Price Predictor AI with Eurowings
 
-Partnered with Eurowings Digital this project aims to predict flight prices based on several parameters. Among the tools used are: Python, pandas, scikit-learn, streamlit, Docker, and more. The output is the final price of a flight depending on the following parameters:
+Partnered with Eurowings Digital this project aims to predict flight prices based on several parameters. Among the tools used are: Python, pandas, scikit-learn, streamlit, Docker, and more. The output is the **final price of a flight** depending on the following parameters:
 
 - Origin Airport
 - Destination Airport
