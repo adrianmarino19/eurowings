@@ -16,7 +16,7 @@ Partnered with Eurowings Digital, this project aims to predict flight prices bas
 - Booking Date
 - Airline
 
-Important to note that one of the most important parameters for airlines is booking date, in other words, when a client books a flight in relation to the actual flight date. Think of this tool as almost a time traveller.
+Important to note that one of the most important parameters for airlines is booking date, in other words, when a client books a flight in relation to the actual flight date. Therefore, think of this tool as almost a time traveller.
 
 :boom:<a href='https://takeoff.streamlit.app/'>Takeoff Flight Price Predictor AI</a>
 
