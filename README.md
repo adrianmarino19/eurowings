@@ -8,6 +8,27 @@ Partnered with Eurowings Digital this project aims to predict flight prices base
 
 :boom:<a href='https://takeoff.streamlit.app/'>Takeoff Flight Price Predictor AI</a>
 
+## Table of Contents
+
+
+## <a name='key'></a>**Key Features**
+
+
+## <a name='arch'></a>**Architecture**
+
+
+## <a name='hiw'></a>**How it works?**
+
+
+## <a name='set'></a>**Setup & Installation**
+
+### <a name='ins'></a>**Installation**
+
+## <a name='dep'></a>**Deployment on Cloud**
+
+### <a name='step'></a>**Steps to deploy**
+
+
 
 
 
