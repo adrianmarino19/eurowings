@@ -8,6 +8,9 @@ The solution combines **machine learning**, **automated ETL pipelines**, and **c
 
 It empowers airlines to proactively monitor market dynamics and adjust pricing strategies with data-driven insights.
 
+:boom:<a href='https://takeoff.streamlit.app/'>Takeoff Web App</a>
+
+<br>
 
 ## 📚 Project Overview
 
@@ -22,6 +25,7 @@ It empowers airlines to proactively monitor market dynamics and adjust pricing s
   - Booking horizon and trip length
   - Carrier-specific behavior
 
+<br>
 
 ## 🛠 Tech Stack
 
@@ -34,6 +38,7 @@ It empowers airlines to proactively monitor market dynamics and adjust pricing s
 | **Data Handling**| Pandas, Numpy |
 | **Environment**  | Python 3.11 |
 
+<br>
 
 ## 🛤️ Architecture
 
@@ -57,7 +62,7 @@ It empowers airlines to proactively monitor market dynamics and adjust pricing s
 - **Frontend (Streamlit):**  
   User-facing interface to select flight parameters and visualize predicted prices.
 
-
+<br>
 
 ## 🚀 Quickstart
 
@@ -84,6 +89,7 @@ uvicorn takeoff.api:app --reload
 ```
 Access the API at: http://localhost:8000/predict
 
+<br>
 
 ## 📈 Results
 * Achieved robust model performance on test data (high R²).
@@ -91,6 +97,7 @@ Access the API at: http://localhost:8000/predict
 * Streamlined continuous deployment to the cloud for live API access.
 * **Winner** across all Le Wagon Spain and Portugal cohorts.
 
+<br>
 
 ## 🤝 Contributors
 * **Adrián Marino** — LinkedIn
