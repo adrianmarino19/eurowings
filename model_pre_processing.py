@@ -5,7 +5,7 @@ class ModelPreProcessing:
     def __init__(self):
         file = "SkyScannerRedirrect_DataScienceBootCamp.csv"
         self.df = pd.read_csv(file)
-        #Remove all the "calculator" columns that are now not needed (revenues, and amount of people col)
+        # Remove all the "calculator" columns that are now not needed (revenues, and amount of people col)
 
 
     def num_scaling(self):
