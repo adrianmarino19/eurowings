@@ -8,11 +8,10 @@ The solution combines **machine learning**, **automated ETL pipelines**, and **c
 
 It empowers airlines to proactively monitor market dynamics and adjust pricing strategies with data-driven insights.
 
----
 
 ## 📚 Project Overview
 
-- **Business Goal:** Help Eurowings Digital anticipate competitor pricing trends to optimize strategic decision-making.
+- **Goal:** Help Eurowings Digital anticipate competitor pricing trends to optimize strategic decision-making.
 - **Data:** Aggregated flight booking data sourced from Skyscanner and other providers.
 - **Model:** Gradient Boosted Trees (XGBoost), trained on engineered features including:
   - Distance between airports
@@ -23,7 +22,6 @@ It empowers airlines to proactively monitor market dynamics and adjust pricing s
   - Booking horizon and trip length
   - Carrier-specific behavior
 
----
 
 ## 🛠 Tech Stack
 
@@ -36,7 +34,6 @@ It empowers airlines to proactively monitor market dynamics and adjust pricing s
 | **Data Handling**| Pandas, Numpy |
 | **Environment**  | Python 3.11 |
 
----
 
 ## 🛤️ Architecture
 
@@ -60,7 +57,7 @@ It empowers airlines to proactively monitor market dynamics and adjust pricing s
 - **Frontend (Streamlit):**  
   User-facing interface to select flight parameters and visualize predicted prices.
 
----
+
 
 ## 🚀 Quickstart
 
@@ -68,9 +65,36 @@ It empowers airlines to proactively monitor market dynamics and adjust pricing s
 ```bash
 git clone https://github.com/<your-username>/takeoff.git
 cd takeoff
+```
+
+### 2. Install dependencies
+```bash
+pip install -r requirements.txt
+```
 
 
+### 3. Train the model
+```bash
+python train.py
+```
 
+### 4. Launch API locally
+```bash
+uvicorn takeoff.api:app --reload
+```
+Access the API at: http://localhost:8000/predict
+
+
+## 📈 Results
+* Achieved robust model performance on test data (high R²).
+* Designed modular pipelines for feature engineering and model training.
+* Streamlined continuous deployment to the cloud for live API access.
+* **Winner** across all Le Wagon Spain and Portugal cohorts.
+
+
+## 🤝 Contributors
+* **Adrián Marino** — LinkedIn
+* Project mentored at Le Wagon Data Science Bootcamp.
 
 ---
 
