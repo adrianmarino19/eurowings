@@ -1,3 +1,80 @@
+# ✈️ Takeoff — Flight Price Prediction for Eurowings Digital
+
+**🏆 Awarded Best Project @ Le Wagon Data Science**  
+**🚀 Deployed on Google Cloud Run | FastAPI Backend | Streamlit Frontend**
+
+Takeoff is a flight price prediction system built for **Eurowings Digital** (€2B airline group) to forecast competitor pricing strategies.  
+The solution combines **machine learning**, **automated ETL pipelines**, and **cloud deployment** to deliver real-time price predictions via a web application.
+
+It empowers airlines to proactively monitor market dynamics and adjust pricing strategies with data-driven insights.
+
+---
+
+## 📚 Project Overview
+
+- **Business Goal:** Help Eurowings Digital anticipate competitor pricing trends to optimize strategic decision-making.
+- **Data:** Aggregated flight booking data sourced from Skyscanner and other providers.
+- **Model:** Gradient Boosted Trees (XGBoost), trained on engineered features including:
+  - Distance between airports
+  - Destination GDP per capita
+  - Cabin class
+  - Flight type (Return / One-way)
+  - Connecting vs. direct flights
+  - Booking horizon and trip length
+  - Carrier-specific behavior
+
+---
+
+## 🛠 Tech Stack
+
+| Component        | Technology            |
+|------------------|------------------------|
+| **Modeling**     | XGBoost, Random Forest, Scikit-learn |
+| **API**          | FastAPI |
+| **Deployment**   | Docker + Google Cloud Run |
+| **Frontend**     | Streamlit |
+| **Data Handling**| Pandas, Numpy |
+| **Environment**  | Python 3.11 |
+
+---
+
+## 🛤️ Architecture
+
+- **Backend (FastAPI):**  
+  Exposes a `/predict` endpoint which receives flight search parameters and returns a predicted flight price.
+
+- **Model Training:**  
+  `train.py` processes the historical flight data, engineers features, trains the model, and exports it as `pipeline2.pkl`.
+
+- **Preprocessing Pipeline:**  
+  `utils.py` and `model_pre_processing.py` handle dynamic feature engineering including:
+  - Geographical distance computation
+  - GDP enrichment
+  - Categorical encoding and feature filtering
+
+- **Deployment:**  
+  - Dockerized using the provided `Dockerfile`.
+  - Built and pushed to Google Artifact Registry.
+  - Deployed with Google Cloud Run for serverless scalability.
+
+- **Frontend (Streamlit):**  
+  User-facing interface to select flight parameters and visualize predicted prices.
+
+---
+
+## 🚀 Quickstart
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/<your-username>/takeoff.git
+cd takeoff
+
+
+
+
+---
+
+
 <p align="center">
     <img src="https://github.com/adrianmarino19/eurowings-frontend/blob/9f1ac2f139b44ca42d1b69f00a039452688b2f8d/images/1.png" title="Takeoff Symbol" style="background-color: white; width: 375px; height: auto;">
 </p>
