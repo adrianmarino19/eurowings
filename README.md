@@ -100,9 +100,8 @@ Access the API at: http://localhost:8000/predict
 <br>
 
 ## 🤝 Contributors
-* **Adrián Marino** — LinkedIn
-* Project mentored at Le Wagon Data Science Bootcamp.
-
+* **Adrián Marino** — <a href='https://www.linkedin.com/in/adrian-marino/'>LinkedIn</a>
+  
 ---
 
 
