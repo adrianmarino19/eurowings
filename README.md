@@ -1,12 +1,13 @@
-# ✈️ Takeoff — Flight Price Prediction for Eurowings Digital
-
-**🏆 Awarded Best Project @ Le Wagon Data Science**  
-**🚀 Deployed on Google Cloud Run | FastAPI Backend | Streamlit Frontend**
+# ✈️Takeoff — Flight Price Prediction for Eurowings Digital
 
 Takeoff is a flight price prediction system built for **Eurowings Digital** (€2B airline group) to forecast competitor pricing strategies.  
 The solution combines **machine learning**, **automated ETL pipelines**, and **cloud deployment** to deliver real-time price predictions via a web application.
 
 It empowers airlines to proactively monitor market dynamics and adjust pricing strategies with data-driven insights.
+
+
+**🏆 Awarded Best Project @ Le Wagon Data Science**  
+**🚀 Deployed on Google Cloud Run | FastAPI Backend | Streamlit Frontend**
 
 :boom:<a href='https://takeoff.streamlit.app/'>Takeoff Web App</a>
 
