@@ -7,8 +7,8 @@ model_filename = "takeoff/pipeline2.pkl"
 model = pickle.load(open(model_filename,"rb"))
 accepted_dest_airport = 1
 # Do a list of all the OHT filtering to hard code every single airport
-# and shit so that even if in the predict you have access to the list to check if it's other or if
-#it exists. HARD CODE ALL
+# so that even if in the predict you have access to the list to check if it's other or if
+# it exists. 
 
 
 def predict_api(data):
