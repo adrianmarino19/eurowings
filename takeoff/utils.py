@@ -160,11 +160,14 @@ def cleaning(data):
     dist = get_dist(data[0], data[1])
     print("dist done")
     print(dist)
+
     gdp = get_gdp(data[1])
     print("gdb done")
+
     horizon = days_between(data[6], data[7])
     print("horizon")
     print(horizon)
+
     final_data = [dist, gdp, data[2], data[3], data[4], data[5], horizon, data[-1]]
     test_cols = ["Distance",
                 "GDP_per_capita_EUR",
@@ -185,7 +188,7 @@ def cleaning(data):
 
     # Create a DataFrame
     data = pd.DataFrame([final_data], columns=test_cols)
-    print("Checking dataiscorrectfor predict")
+    print("Checking data is correct for predict")
     for index, row in data.iterrows():
         print(row[0])
         print(row[1])
